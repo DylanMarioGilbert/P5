@@ -44,16 +44,45 @@ function updateSlide() {
 }
 
 // Fonction pour afficher la diapositive précédente
+// function previousSlide() {
+//     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+//     updateSlide();
+// }
+
+// // Fonction pour afficher la diapositive suivante
+// function nextSlide() {
+//     currentSlide = (currentSlide + 1) % slides.length;
+//     updateSlide();
+// }
+
 function previousSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    // Décrémente l'index de la diapositive actuelle
+    currentSlide -= 1;
+
+    // Vérifie si l'index est devenu négatif (en passant de la première à la dernière diapositive)
+    if (currentSlide < 0) {
+        // Revenir à la dernière diapositive
+        currentSlide = slides.length - 1;
+    }
+
+    // Met à jour l'affichage avec la nouvelle diapositive
     updateSlide();
 }
 
-// Fonction pour afficher la diapositive suivante
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
+    // Incrémente l'index de la diapositive actuelle
+    currentSlide += 1;
+
+    // Vérifie si l'index est supérieur à la longueur du tableau slides
+    if (currentSlide >= slides.length) {
+        // Revenir à la première diapositive
+        currentSlide = 0;
+    }
+
+    // Met à jour l'affichage avec la nouvelle diapositive
     updateSlide();
 }
+
 
 // Ajoutez des event listeners pour les flèches gauche et droite
 arrowLeft.addEventListener('click', previousSlide);
